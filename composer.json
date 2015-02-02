@@ -1,0 +1,27 @@
+{
+    "name": "AlexKovalevych/mapping-converter",
+    "type": "library",
+    "description": "This library converts mappings from one library to another",
+    "keywords": ["converter", "library", "mapping", "doctrine", "mandango"],
+    "homepage": "https://github.com/AlexKovalevych/mapping-converter",
+    "authors": [
+        {
+            "name": "Alex Kovalevych",
+            "email": "alexkovalevych@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/console": ">=2.3.0",
+        "symfony/finder": ">=2.3.0",
+        "symfony/filesystem": ">=2.3.0"
+    },
+    "autoload": {
+        "psr-0": { "Kovalevych\\MappingConverter": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}

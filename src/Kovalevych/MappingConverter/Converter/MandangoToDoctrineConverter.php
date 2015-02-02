@@ -1,6 +1,6 @@
 <?php
 
-namespace Kovalevych\MappingConverter\Conveter;
+namespace Kovalevych\MappingConverter\Converter;
 
 use Kovalevych\MappingConverter\Generator\DoctrineDocumentGenerator;
 
@@ -20,7 +20,7 @@ class MandangoToDoctrineConverter
      * @param  array  $config Mandango mappings config
      * @return string
      */
-    public function generateDocument(array $config, $fromNamespace, $toNamespace)
+    public function generateDocument(array $config, $fromNamespace = null, $toNamespace = null)
     {
         $data = array_values($config)[0];
         $fields = [];
@@ -30,13 +30,13 @@ class MandangoToDoctrineConverter
 
         if (array_key_exists('referencesOne', $data)) {
             foreach ($data['referencesOne'] as $name => $value) {
-                $fields[] = $this->generator->createReferenceOneField($name, $value)->generate();
+                $fields[] = $this->generator->createReferenceOneField($name, $value, $fromNamespace, $toNamespace)->generate();
             }
         }
 
         if (array_key_exists('referencesMany', $data)) {
             foreach ($data['referencesMany'] as $name => $value) {
-                $fields[] = $this->generator->createReferenceManyField($name, $value)->generate();
+                $fields[] = $this->generator->createReferenceManyField($name, $value, $fromNamespace, $toNamespace)->generate();
             }
         }
         $collection = $data['collection'];

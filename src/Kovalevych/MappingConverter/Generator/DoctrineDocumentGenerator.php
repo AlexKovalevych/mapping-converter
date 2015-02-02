@@ -2,9 +2,9 @@
 
 namespace Kovalevych\MappingConverter\Generator;
 
-use Kovalevych\MappingConverter\Field\SimpleField;
-use Kovalevych\MappingConverter\Field\ReferenceOneField;
-use Kovalevych\MappingConverter\Field\ReferenceManyField;
+use Kovalevych\MappingConverter\Field\Document\SimpleField;
+use Kovalevych\MappingConverter\Field\Document\ReferenceOneField;
+use Kovalevych\MappingConverter\Field\Document\ReferenceManyField;
 
 class DoctrineDocumentGenerator
 {
@@ -50,34 +50,38 @@ class DoctrineDocumentGenerator
     }
 
     /**
-     * @param  string  $name
-     * @param  array   $fieldData
+     * @param  string $name
+     * @param  array  $fieldData
+     * @param  string $fromNamespace
+     * @param  string $toNamespace
      * @return Kovalevych\MandangoToDoctrineConverter\Field\ReferenceOneField
      */
-    public function createReferenceOneField($name, array $fieldData)
+    public function createReferenceOneField($name, array $fieldData, $fromNamespace = null, $toNamespace = null)
     {
         $field = new ReferenceOneField();
         $field->setType('ReferenceOne');
 
         return $field
             ->setName($name)
-            ->setReferencedClass($fieldData['class'])
+            ->setReferencedClass($fieldData['class'], $fromNamespace, $toNamespace)
         ;
     }
 
     /**
-     * @param  string  $name
-     * @param  array   $fieldData
+     * @param  string $name
+     * @param  array  $fieldData
+     * @param  string $fromNamespace
+     * @param  string $toNamespace
      * @return Kovalevych\MandangoToDoctrineConverter\Field\ReferenceManyField
      */
-    public function createReferenceManyField($name, array $fieldData)
+    public function createReferenceManyField($name, array $fieldData, $fromNamespace = null, $toNamespace = null)
     {
         $field = new ReferenceManyField();
         $field->setType('ReferenceMany');
 
         return $field
             ->setName($name)
-            ->setReferencedClass($fieldData['class'])
+            ->setReferencedClass($fieldData['class'], $fromNamespace, $toNamespace)
         ;
     }
 }

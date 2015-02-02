@@ -2,7 +2,7 @@
 
 namespace Kovalevych\MappingConverter\Field\Document;
 
-class ReferenceOneField extends AbstractReferencedField
+class ReferenceOneField extends AbstractReferenceField
 {
     /**
      * {@inheritDoc}
